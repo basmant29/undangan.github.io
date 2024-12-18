@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #fdf9f3;
+            color: #333;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header {
+            background: url('https://images.unsplash.com/photo-1509223197845-458d87318791') center/cover;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        .section {
+            margin: 20px 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #b45f06;
+        }
+
+        .chat-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-box h3 {
+            margin-bottom: 10px;
+            color: #b45f06;
+        }
+
+        #chatMessages {
+            height: 250px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fafafa;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        #chatMessages p {
+            margin-bottom: 8px;
+            padding: 5px;
+            background: #f0f8ff;
+            border-radius: 5px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #b45f06;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #944c04;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Bottom Navbar */
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .navbar a:hover {
+            color: #b45f06;
+        }
+
+        /* Particles */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Container -->
+    <div id="particles-js"></div>
+
+    <!-- Header -->
+    <header>
+        <h1>Undangan Pernikahan</h1>
+        <p>Rama & Sinta</p>
+        <p>Minggu, 1 Juli 2024</p>
+    </header>
+
+    <!-- Isi Undangan -->
+    <div class="container">
+        <section class="section">
+            <h2>Detail Acara</h2>
+            <p><strong>Tanggal:</strong> Minggu, 1 Juli 2024</p>
+            <p><strong>Waktu:</strong> 10:00 WIB</p>
+            <p><strong>Lokasi:</strong> Gedung Graha Cinta, Jakarta</p>
+        </section>
+
+        <!-- Chat Box -->
+        <div class="chat-box">
+            <h3>Berikan Ucapan & Konfirmasi Kehadiran</h3>
+            <div id="chatMessages">
+                <!-- Pesan akan ditampilkan di sini -->
+            </div>
+            <input type="text" id="nameInput" placeholder="Nama Anda">
+            <textarea id="chatInput" placeholder="Tulis ucapan Anda di sini..."></textarea>
+            <select id="attendanceInput">
+                <option value="" disabled selected>Konfirmasi Kehadiran</option>
+                <option value="Hadir">Hadir</option>
+                <option value="Tidak Hadir">Tidak Hadir</option>
+            </select>
+            <button onclick="addMessage()">Kirim Ucapan</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Terima kasih atas doa dan restu Anda. Sampai jumpa di hari spesial kami!</p>
+    </footer>
+
+    <!-- Bottom Navbar -->
+    <div class="navbar">
+        <a href="#">🏠 Beranda</a>
+        <a href="#">💌 Ucapan</a>
+        <a href="#">📞 Kontak</a>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Partikel Dinamis
+        particlesJS("particles-js", {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#b45f06"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#fff"
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#b45f06",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        const chatMessages = document.getElementById('chatMessages');
+        const nameInput = document.getElementById('nameInput');
+        const chatInput = document.getElementById('chatInput');
+        const attendanceInput = document.getElementById('attendanceInput');
+
+        // Ambil data dari LocalStorage
+        let messages = JSON.parse(localStorage.getItem('weddingChat')) || [];
+
+        // Tampilkan Pesan
+        function displayMessages() {
+            chatMessages.innerHTML = "";
+            messages.forEach(msg => {
+                const p = document.createElement('p');
+                let attendanceIcon = "";
+
+                if (msg.attendance === "Hadir") {
+                    attendanceIcon = "&#10004;"; // Centang
+                } else if (msg.attendance === "Tidak Hadir") {
+                    attendanceIcon = "&#128584;"; // Tangan meminta maaf
+                }
+
+                p.innerHTML = `<strong>${msg.name}</strong> (${attendanceIcon} ${msg.attendance}): ${msg.message}`;
+                chatMessages.appendChild(p);
+            });
+        }
+
+        // Tambahkan Pesan Baru
+        function addMessage() {
+            const name = nameInput.value.trim();
+            const message = chatInput.value.trim();
+            const attendance = attendanceInput.value;
+
+            if (name === "" || message === "" || !attendance) {
+                alert("Harap isi semua kolom!");
+                return;
+            }
+
+            const newMessage = { name, message, attendance };
+            messages.push(newMessage);
+            localStorage.setItem('weddingChat', JSON.stringify(messages));
+
+            // Reset input
+            nameInput.value = "";
+            chatInput.value = "";
+            attendanceInput.selectedIndex = 0;
+
+            displayMessages();
+        }
+
+        displayMessages();
+    </script>
+</body>
+</html>
